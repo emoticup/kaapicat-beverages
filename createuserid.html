@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Portal - Create User</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-image: url('https://wallpaperboat.com/wp-content/uploads/2019/10/free-website-background-01.jpg'); /* Background image */
+            margin: 0;
+            padding: 0;
+            background-color: white;
+            color: #333;
+        }
+
+        header {
+            background-color:white;
+            text-align: center;
+            padding: 10px;
+        }
+
+        #logo {
+    max-width: 150px;
+    max-height: 150px;
+    margin: 10px; /* Adjust margin as needed */
+    position: absolute; /* Position absolutely */
+    top: 10px; /* Distance from top */
+    left: 10px; /* Distance from left */
+    border-radius: 8px;
+    transform: scale(1.5); /* Zoom in effect */
+}
+
+        main {
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        form {
+            background-color: lightblue;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            margin: auto;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        label {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        input {
+            width: calc(100% - 16px);
+            padding: 10px;
+            margin-bottom: 16px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color:darkblue;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #555;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        footer {
+            background-color:grey;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header with Company Logo -->
+    <header>
+        <img id="logo" src="https://play-lh.googleusercontent.com/ntR1nKoIVBsSt758Zd5XZ9A-GBs1n3iyyN7PikoKRq2lsOFDIWhD3HcQdMMmmc-1bQ=h500" alt="Company Logo">
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <h1>Admin Portal-Create User ID</h1>
+
+        <!-- Create User Form -->
+        <form id="createUserForm" onsubmit="confirmAndProceed(); return false;">
+            
+
+            <!-- Company Logo Display -->
+            
+            <!-- Create User ID and Password Fields -->
+            <label for="createUserId">Create User ID:</label>
+            <input type="text" id="createUserId" name="createUserId" required>
+
+            <label for="createPassword">Create Password:</label>
+            <input type="password" id="createPassword" name="createPassword" required>
+
+            <button type="submit">Confirm & Proceed</button>
+        </form>
+        <!-- Next Page link -->
+        <a href="OPTIONSforadminportal.html" id="nextPageLink" style="display:none;">Go to Next Page</a>
+
+    </main>
+    <footer>
+        &copy; Copyright 2017 emoticup. | All rights reserved.
+    </footer>
+    <!-- Previous Page Link -->
+<a href="javascript:history.back()" class="prev-page-link">Previous Page</a>
+
+
+
+    <script>
+        function confirmAndProceed() {
+            // Add logic for confirming and proceeding with user creation
+            var userId = document.getElementById('createUserId').value;
+            var password = document.getElementById('createPassword').value;
+            // Replace these values with your desired username and password
+            var expectedUsername = "Nikhil";
+                var expectedPassword = "123456";
+                var expectedUsername = "harshitha";
+                var expectedPassword = "123456";
+                var expectedUsername = "manjunath iyer";
+                var expectedPassword = "123456";
+                var expectedUsername = "shabhareesh";
+                var expectedPassword = "123456";
+                var expectedUsername = "varija";
+                var expectedPassword = "123456";
+
+                
+
+            // Example: Check if user ID and password meet requirements
+            if (userId.length >= 4 && password.length >= 6) {
+                alert('User created successfully!');
+                // Implement further actions after user creation
+            } else {
+                alert('User creation failed. Please check the requirements.');
+            }
+        }
+    </script>
+
+</body>
+
+</html>

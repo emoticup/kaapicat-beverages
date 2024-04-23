@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>User Portal</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: white;
+            background-image: url("");
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        header img {
+            border-radius: 50%;
+            margin-top: 10px;
+        }
+
+        form {
+            background-color: lemonchiffon;
+            padding: 90px;
+            border-radius: 25px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 350px; /* Adjust the width as needed */
+            position: relative;
+            margin-top: 10px; /* Adjust as needed to control the overlap */
+        }
+
+        img {
+            display: block;
+            margin: 20px auto; /* Center the image and add some top margin */
+            max-width: 20%;
+            height: auto;
+        }
+
+        #contact-logo {
+            position: absolute;
+            top: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1; /* Ensure the logo appears above the form */
+        }
+
+        .form-row {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            margin-bottom: 15px;
+        }
+
+        .remember-me {
+            display: flex;
+            align-items: center;
+        }
+
+        .forgot-password {
+            text-align: right;
+            flex-grow: 1;
+        }
+
+        button {
+            background-color:blue;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 15px auto 0; /* Center the button and add some top margin */
+            display: block; /* Ensure block-level display for margin auto to work */
+        }
+
+        button:hover {
+            background-color: #495057;
+        }
+
+        #redirectMessage {
+            color: #28a745; /* Green color for redirect message */
+            text-align: center;
+            margin-top: 10px;
+            display: none;
+        }
+
+        #error-message {
+            color: #dc3545; /* Red color for error message */
+            text-align: center;
+            margin-top: 10px;
+            display: none;
+        }
+        
+        select {
+    padding: 10px;
+    font-size: 16px;
+    width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    color: #333;
+    cursor: pointer;
+    margin-bottom: 20px; /* Add some bottom margin */
+}
+
+input {
+    width: 85%;
+    padding: 20px;
+    margin-bottom: 50px; /* Add some bottom margin */
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+
+
+    </style>
+</head>
+
+<body>
+    <img src="https://play-lh.googleusercontent.com/ntR1nKoIVBsSt758Zd5XZ9A-GBs1n3iyyN7PikoKRq2lsOFDIWhD3HcQdMMmmc-1bQ=h500" alt="Company Logo">
+    <h1>Hi, Welcome to emoticup!</h1>
+    <div class="row justify-content-center">
+        <form class="col-auto text-center"> <!-- Added text-center class to center form content -->
+           <p>Please Select Below:</p>
+            <div class="dropdown mb-3">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="existing-dropdown-btn" data-bs-toggle="dropdown" aria-expanded="false">
+                    Select Company
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="existing-dropdown-btn" id="existing-dropdown-menu">
+                    <!-- Existing company names will be dynamically added here -->
+                </ul>
+            </div>
+        </form>
+    </div>
+           
+           
+            <button type="submit"> <a href="feedback - form.html" style="text-decoration: none; color: inherit;">
+                Proceed
+            </a>
+        </form>
+    
+        <script>
+            document.getElementById('show-existing-btn').addEventListener('click', function() {
+            // Update dropdown menu when the button is clicked
+            updateDropdownMenu();
+        });
+    
+        function updateDropdownMenu() {
+            const dropdownMenu = document.getElementById('existing-dropdown-menu');
+            dropdownMenu.innerHTML = '';
+    
+            existingCompanyNames.forEach(company => {
+                const listItem = document.createElement('li');
+                const link = document.createElement('a');
+                link.classList.add('dropdown-item');
+                link.href = '#';
+                link.innerText = company;
+                link.addEventListener('click', function() {
+                    displayCompanyDetails(company);
+                });
+                listItem.appendChild(link);
+                dropdownMenu.appendChild(listItem);
+            });
+        }
+
+    
+    function displayCompanyDetails(company) {
+        const companyProfiles = JSON.parse(localStorage.getItem('customerProfiles')) || [];
+        const selectedProfile = companyProfiles.find(profile => profile.companyname === company);
+    
+        if (selectedProfile) {
+            const email = selectedProfile.email;
+            const demoStartDate = selectedProfile.demoStartDate;
+            const demoEndDate = selectedProfile.demoEndDate;
+    
+            // Redirect to the next page with URL parameters
+            window.location.href = `nextpage.html?email=${email}&demoStartDate=${demoStartDate}&demoEndDate=${demoEndDate}`;
+        } else {
+            alert('Company details not found.');
+        }
+    }
+    
+        function redirectToNextPage() {
+    window.location.href = 'OPTIONSforadminportal.html'; // Replace 'next_page.html' with the URL of your next page
+}
+
+     
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('searchCompany');
+            const dropdownMenu = document.getElementById('existing-dropdown-menu');
+            const existingCompanyNames = JSON.parse(localStorage.getItem('existingCompanyNames')) || [];
+        
+            // Function to update the dropdown menu based on search query
+            function updateDropdownMenu() {
+                // Clear existing items from the dropdown menu
+                dropdownMenu.innerHTML = '';
+        
+                // Get search query
+                const searchQuery = searchInput.value.trim().toLowerCase();
+        
+                // Filter existing company names based on search query
+                const filteredCompanies = existingCompanyNames.filter(company => company.toLowerCase().includes(searchQuery));
+        
+                // Add filtered company names to the dropdown menu
+                filteredCompanies.forEach(company => {
+                    const listItem = document.createElement('li');
+                    const link = document.createElement('a');
+                    link.classList.add('dropdown-item');
+                    link.href = '#';
+                    link.innerText = company;
+                    link.addEventListener('click', function() {
+                        displayCompanyDetails(company);
+                    });
+                    listItem.appendChild(link);
+                    dropdownMenu.appendChild(listItem);
+                });
+        
+                // If no matching company found, display a message
+                if (filteredCompanies.length === 0) {
+                    const listItem = document.createElement('li');
+                    listItem.classList.add('dropdown-item');
+                    listItem.innerText = 'No matching company found';
+                    dropdownMenu.appendChild(listItem);
+                }
+            }
+        
+            // Update dropdown menu when the search input changes
+            searchInput.addEventListener('input', updateDropdownMenu);
+        
+            // Update dropdown menu when the page loads
+            updateDropdownMenu();
+        });
+        // Redirect to the next page with URL parameters
+    window.location.href = `nextpage.html?email=${email}&demoStartDate=${demoStartDate}&demoEndDate=${demoEndDate}`;
+        </script>
+        
+
+
+    <script>
+const scriptURL = 'https://script.google.com/macros/s/AKfycbx2MFYHszLg1bu91qAu4HQfiV_TTGd4fVrZfoPTbzyL5hsr-Id4Iztos1IVqFpz4NXA/exec'
+const form = document.forms['submit-to-google-sheet']
+form.addEventListener('submit', e => {
+e.preventDefault()
+fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+.then(response => console.log('Success!', response))
+.catch(error => console.error('Error!', error.message))
+})
+</script>
+       
+</body>
+
+</html>

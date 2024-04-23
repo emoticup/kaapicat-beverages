@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Customer</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container text-center">
+        <br>
+        <h1>Delete Customer</h1>
+        <br>
+        <div class="card mx-auto" style="width: 18rem;">
+            <div class="card-body">
+                <form id="delete-customer-form">
+                    <div class="mb-3">
+                        <input id="delete-companyname" name="companyname" type="text" class="form-control" placeholder="Company Name" required>
+                    </div>
+                    <div class="mb-3">
+                        <input id="delete-email" name="email" type="email" class="form-control" placeholder="Email" required>
+                    </div>
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div id="deletion-status"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+    document.getElementById('delete-customer-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+        const companyname = document.getElementById('delete-companyname').value.trim();
+        const email = document.getElementById('delete-email').value.trim();
+
+        let customerProfiles = JSON.parse(localStorage.getItem('customerProfiles')) || [];
+
+        const index = customerProfiles.findIndex(profile => profile.companyname === companyname && profile.email === email);
+
+        if (index !== -1) {
+            customerProfiles.splice(index, 1);
+            localStorage.setItem('customerProfiles', JSON.stringify(customerProfiles));
+            document.getElementById('deletion-status').innerText = 'Customer deleted successfully!';
+        } else {
+            document.getElementById('deletion-status').innerText = 'Customer not found. Please check the company name and email.';
+        }
+
+        // Reset the form
+        this.reset();
+    });
+    </script>
+</body>
+
+</html>

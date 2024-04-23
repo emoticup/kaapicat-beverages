@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete User-ID</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-image: url('https://wallpaperboat.com/wp-content/uploads/2019/10/free-website-background-01.jpg'); /* Background image */
+            margin: 0;
+            padding: 0;
+            background-color: white;
+            color: #333;
+        }
+
+        header {
+            background-color: white;
+            text-align: center;
+            padding: 10px;
+        }
+
+        #logo {
+            max-width: 300px;
+            max-height: 300px;
+        }
+
+        main {
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        form {
+            background-color: lightblue;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            margin: auto;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        label {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        input {
+            width: calc(100% - 16px);
+            padding: 10px;
+            margin-bottom: 16px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color:darkblue;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color:darkgreen;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        #logo {
+    max-width: 150px;
+    max-height: 150px;
+    margin: 10px; /* Adjust margin as needed */
+    position: absolute; /* Position absolutely */
+    top: 10px; /* Distance from top */
+    left: 10px; /* Distance from left */
+    border-radius: 8px;
+    transform: scale(1.5); /* Zoom in effect */
+}
+footer {
+            background-color:grey;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header with Company Logo -->
+    <header>
+        <img id="logo" src="https://play-lh.googleusercontent.com/ntR1nKoIVBsSt758Zd5XZ9A-GBs1n3iyyN7PikoKRq2lsOFDIWhD3HcQdMMmmc-1bQ=h500" alt="Company Logo">
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <h1>Admin Portal-Delete User Id</h1>
+
+
+        <!-- Confirmation Form -->
+        <form id="confirmationForm" onsubmit="confirmDeletion(); return false;">
+          
+            <!-- Display Selected Company Name and Email ID -->
+            <label for="displayCompanyName">User ID:</label>
+            <input type="text" id="displayCompanyName" name="DeletedUser"  >
+
+           
+
+            <!-- Admin User ID and Password -->
+            <label for="adminUserId">Admin User ID:</label>
+            <input type="text" id="displayCompanyName" name="admin user"  >
+           
+            <label for="adminPassword">Admin Password:</label>
+            <input type="password" id="adminPassword" name="adminPassword" required>
+
+            <button type="submit">Confirm Deletion</button>
+        </form>
+
+    </main>
+<!-- Previous Page Link -->
+<a href="javascript:history.back()" class="prev-page-link">Previous Page</a>
+
+<footer>
+    &copy; Copyright 2017 emoticup. | All rights reserved.
+</footer>
+
+    
+    <script>
+        function confirmDeletion() {
+            // Add logic for confirming and proceeding with the deletion
+            var adminPassword = document.getElementById('adminPassword').value;
+
+            // Example: Check if the admin password is valid
+            if (adminPassword === 'adminPassword123') {
+                alert('Customer profile deleted successfully!');
+                // Implement further actions after deletion
+            } else {
+                alert('Invalid admin password. Deletion failed.');
+            }
+        }
+        
+    </script>
+</body>
+
+</html>

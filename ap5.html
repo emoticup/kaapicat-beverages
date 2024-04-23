@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Admin Portal</title>
+    <style>
+        body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: white;
+    background-image: url('free-website-background-01.jpg'); /* Background image */
+    background-repeat: no-repeat; /* Prevent background image from repeating */
+    background-size: cover; /* Cover the entire background */
+    background-position: center; /* Center the background image */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+}
+
+header {
+    text-align: left;
+    margin-bottom: 20px;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+header img {
+    width: 100px;
+    height: auto;
+    border-radius: 50%;
+}
+
+
+
+
+       form {
+        background-color: rgba(208, 242, 255, 0.8); /* Creamy color with 70% opacity */
+
+    padding: 90px;
+    border-radius: 25px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 350px; /* Adjust the width as needed */
+    position: relative;
+    margin-top: 140px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center the form contents horizontally */
+}
+
+#company-logo {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 600px;
+        height: 500px;
+        border-radius: 50%;
+        z-index: 1;
+    }
+
+        #contact-logo {
+            position: absolute;
+            top: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1; /* Ensure the logo appears above the form */
+        }
+
+        .form-row {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            margin-bottom: 15px;
+        }
+
+        .remember-me {
+            display: flex;
+            align-items: center;
+        }
+
+        .forgot-password {
+            text-align: right;
+            flex-grow: 1;
+        }
+
+        button {
+            background-color:lemonchiffon;
+            color:black;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 15px auto 0; /* Center the button and add some top margin */
+            display: block; /* Ensure block-level display for margin auto to work */
+        }
+
+        button:hover {
+            background-color: #495057;
+        }
+
+        #redirectMessage {
+            color: #28a745; /* Green color for redirect message */
+            text-align: center;
+            margin-top: 10px;
+            display: none;
+        }
+
+        #error-message {
+            color: #dc3545; /* Red color for error message */
+            text-align: center;
+            margin-top: 10px;
+            display: none;
+        }
+        .branding {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            color: brown; /* Adjust text color as needed */
+            font-size: 24px; /* Adjust font size as needed */
+            font-weight: bold;
+        }
+        header img {
+    width: 300px; /* Adjust the width as needed */
+    height: 150px; /* Adjust the height as needed */
+    border-radius: 50%;
+}
+.back-button {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    background-color: #28a745; /* Green background color */
+    color: white; /* White text color */
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    text-decoration: none; /* Remove underline from the link */
+}
+
+.back-button:hover {
+    background-color: #218838; /* Darker green color on hover */
+}
+
+
+    </style>
+</head>
+
+<body>
+    <header>
+        <img src="emoticuplogo.png" alt="Company Logo">
+    
+    
+    </header>
+   
+    <form id="loginForm" onsubmit="return login()">
+        <img id="contact-logo" src="contactlogo.jpeg" alt="Contact Logo"
+            width="100">
+
+        <div class="form-row">
+            <label for="userId">User Name</label>
+            <input type="text" id="username" name="username" required>
+        </div>
+
+        <div class="form-row">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+
+       
+            <div class="forgot-password">
+                <a href="#" onclick="resetPassword()">Forgot password?</a>
+            </div>
+        </div>
+
+        <button><a href="OPTIONSforadminportal.html" class= "button" button type="submit">Login</a></button>
+        <p id="redirectMessage">Login redirecting...</p>
+        <p id="error-message">Invalid user ID or password. Please try again.</p>
+    </form>
+  <!-- Password Reset Form - Initially Hidden -->
+  <form id="resetPasswordForm" style="display: none;">
+    <div class="form-row">
+        <label for="newPassword">New Password</label>
+        <input type="password" id="newPassword" name="newPassword" required>
+    </div>
+    <div class="form-row">
+        <label for="confirmPassword">Confirm Password</label>
+        <input type="password" id="confirmPassword" name="confirmPassword" required>
+    </div>
+    <button type="button" class= "button" onclick="submitResetPassword()">Reset Password</button>
+</form>
+    <a href="Main Portal.html" class="back-button" style="position: fixed; bottom: 70px; left: 20px;">Back</a>
+    <script>
+        var newPassword; // Variable to store the new password
+
+        function login() {
+            var enteredUsername = document.getElementById("username").value;
+            var enteredPassword = document.getElementById("password").value;
+
+            // Check if both username and password are provided
+            if (enteredUsername.trim() === "" || enteredPassword.trim() === "") {
+                alert("Please enter both username and password.");
+                return false; // Prevent form submission
+            }
+
+            // Check if a new password has been set
+            if (newPassword) {
+                // Use the new password for login
+                if (enteredUsername === "BDM" && enteredPassword === newPassword) {
+                    // Successful login with new password
+                    alert("Login successful with new password!");
+                    // Redirect to the next page
+                    window.location.href = "OPTIONSforadminportal.html"; // Change the URL to the next page
+                } else {
+                    // Incorrect username or password
+                    document.getElementById("error-message").style.display = "block";
+                }
+            } else {
+                // Use the default password for login
+                if (enteredUsername === "BDM" && enteredPassword === "kaapicat") {
+                    // Successful login with default password
+                    alert("Login successful with default password!");
+                } else {
+                    // Incorrect username or password
+                    document.getElementById("error-message").style.display = "block";
+                }
+            }
+
+            // Prevent the form from actually submitting
+            return false;
+        }
+
+        function resetPassword() {
+            // Hide login form
+            document.getElementById("loginForm").style.display = "none";
+            // Show reset password form
+            document.getElementById("resetPasswordForm").style.display = "block";
+        }
+
+        function submitResetPassword() {
+            var newPass = document.getElementById("newPassword").value;
+            var confirmPass = document.getElementById("confirmPassword").value;
+
+            if (newPass !== confirmPass) {
+                alert("Passwords do not match. Please try again.");
+                return;
+            }
+
+            // Store the new password
+            newPassword = newPass;
+
+            // Reset form fields
+            document.getElementById("newPassword").value = "";
+            document.getElementById("confirmPassword").value = "";
+
+            // Hide reset password form
+            document.getElementById("resetPasswordForm").style.display = "none";
+            // Show login form
+            document.getElementById("loginForm").style.display = "block";
+
+            // Inform the user about password reset
+            alert("Password reset successfully!");
+        }
+    </script>
+</body>
+
+</html>
